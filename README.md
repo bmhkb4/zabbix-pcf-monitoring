@@ -13,7 +13,7 @@ Collect VM health metrics and alert on VM down
 Collect and alert on PCF [Key Performance Indicators](https://docs.pivotal.io/pivotalcf/1-10/monitoring/kpi.html)
 
 3. Monitor Application Manager
-Monitor apps.<app domain> status
+Monitor apps.pcfappdomain.com status
 
 ## Installation
 1. [Install](https://docs.pivotal.io/jmx-bridge/1-9/installing.html) the [JMX Bridge](https://network.pivotal.io/products/p-metrics) in your Pivotal Cloud Foundry foundation.  
