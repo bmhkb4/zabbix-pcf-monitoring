@@ -33,6 +33,8 @@ Enable the [Nozzle Prefix](https://docs.pivotal.io/jmx-bridge/1-9/installing.htm
 [Graph LLD Items](https://github.com/sepich/glld)
 ![Graph LLD Items](screenshots/zbxglld.PNG "Graph LLD Items")
 
+7. (Optional) Add Trigger Alerts
+[How to add alerts](https://www.zabbix.com/documentation/3.4/manual/config/notifications/action)
 
 ## License
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
