@@ -2,8 +2,7 @@ Pivotal Cloud Foundry Monitoring (1.10) for Zabbix (3.4+)
 =============
 
 ## Description
-This template uses Zabbix LLD to monitor Pivotal Cloud Foundry with Zabbix.
-https://github.com/bmhkb4/zabbix-pcf-monitoring
+This template uses Zabbix LLD to [monitor Pivotal Cloud Foundry with Zabbix](https://github.com/bmhkb4/zabbix-pcf-monitoring).
 
 ## Features
 1. Dynamic VM Component Monitoring
@@ -28,7 +27,7 @@ Enable the [Nozzle Prefix](https://docs.pivotal.io/jmx-bridge/1-9/installing.htm
 4. Upload the template to Zabbix 3.4+
 
 5. Update the template Macros to fit your PCF environment
-![Update PCF Template Macros](screenshots/zbxmacrotmpladd.PNG "Update PCF Template Macros)
+![Update PCF Template Macros](screenshots/zbxmacrotmpladd.PNG "Update PCF Template Macros")
 
 6. (Optional) Add dynamic graphs
 [Graph LLD Items](https://github.com/sepich/glld)
