@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <zabbix_export>
     <version>3.4</version>
-    <date>2018-01-12T17:14:26Z</date>
+    <date>2018-01-12T19:59:37Z</date>
     <groups>
         <group>
             <name>Templates</name>
@@ -3243,4 +3243,38 @@ Pivotal recommends that you do not scale down these components on flat or downwa
             <screens/>
         </template>
     </templates>
+    <triggers>
+        <trigger>
+            <expression>{Template Pivotal Cloud Foundry:web.test.rspcode[Apps Manager Status,Apps Manager Status].last(2m)}&lt;&gt;200</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Apps Manager Down (apps.{$APPDOMAIN})!</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+        <trigger>
+            <expression>{Template Pivotal Cloud Foundry:web.test.time[Apps Manager Status,Apps Manager Status,resp].min(5m)}&gt;0.2</expression>
+            <recovery_mode>0</recovery_mode>
+            <recovery_expression/>
+            <name>Apps Manager Slow (apps.{$APPDOMAIN})!</name>
+            <correlation_mode>0</correlation_mode>
+            <correlation_tag/>
+            <url/>
+            <status>0</status>
+            <priority>4</priority>
+            <description/>
+            <type>0</type>
+            <manual_close>0</manual_close>
+            <dependencies/>
+            <tags/>
+        </trigger>
+    </triggers>
 </zabbix_export>
