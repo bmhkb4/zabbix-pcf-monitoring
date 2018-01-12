@@ -23,14 +23,20 @@ Enable the [Nozzle Prefix](https://docs.pivotal.io/jmx-bridge/1-9/installing.htm
 ![Add the CF JMX Endpoint to Zabbix](screenshots/zbxhostadd.PNG "Add CF JMX endpoint")
 
 3. Enter the value in your environment at template user macros.
+![Add PCF Macros](screenshots/zbxmacroadd.PNG "Add PCF Macros")
 
-## Contribution
-* fork it
-* develop you want
-* create a pull-request !
+4. Upload the template to Zabbix 3.4+
+
+5. Update the template Macros to fit your PCF environment
+![Update PCF Template Macros](screenshots/zbxmacrotmpladd.PNG "Update PCF Template Macros)
+
+6. (Optional) Add dynamic graphs
+[Graph LLD Items](https://github.com/sepich/glld)
+![Graph LLD Items](screenshots/zbxglld.PNG "Graph LLD Items")
+
 
 ## License
 [Apache License, Version 2.0](http://www.apache.org/licenses/LICENSE-2.0)
 
 ## Author
-[tsubauaaa](https://github.com/tsubauaaa)
+[bmhkb4](https://github.com/bmhkb4)

@@ -1,0 +1,3246 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>3.4</version>
+    <date>2018-01-12T17:14:26Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template Pivotal Cloud Foundry</template>
+            <name>Template Pivotal Cloud Foundry</name>
+            <description/>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <applications>
+                <application>
+                    <name>Diego Brain/Cell Metrics</name>
+                </application>
+                <application>
+                    <name>Diego Brain Metrics</name>
+                </application>
+                <application>
+                    <name>Diego Cell Metrics</name>
+                </application>
+                <application>
+                    <name>Diego Database Metrics</name>
+                </application>
+                <application>
+                    <name>Doppler Metrics</name>
+                </application>
+                <application>
+                    <name>HTTP</name>
+                </application>
+                <application>
+                    <name>Router Metrics</name>
+                </application>
+                <application>
+                    <name>VM Metrics</name>
+                </application>
+            </applications>
+            <items/>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Diego Brain and Cell Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=*ieg*,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions>
+                            <condition>
+                                <macro>{#JMXJOB}</macro>
+                                <value>diego_cell|diego_brain</value>
+                                <operator>8</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Consul Health Check</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.route_emitter\.ConsulDownMode&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Consul emits its health status periodically. &#13;
+0 means the system is healthy&#13;
+1 means that route emitter detects that Consul is down.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain/Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Route Emitter Time to Sync</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.route_emitter\.RouteEmitterSyncDuration&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the active route-emitter took to perform its synchronization pass.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain/Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.route_emitter\.ConsulDownMode&quot;].avg(5m)}&lt;&gt;0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Consul Down on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. During upgrades, reduce the Consul server nodes to 1 and then upgrade.&#13;
+&#13;
+2.  Outside of an upgrade, consider disaster recovery for Consul.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.route_emitter\.RouteEmitterSyncDuration&quot;].avg(5m)}&gt;10</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Route Emitter Time to Sync too Long on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Investigate the route_emitter and Diego BBS logs for errors.&#13;
+&#13;
+2. Verify that app routes are functional by making a request to an app, pushing an app and pinging it, or if applicable, checking that your smoke tests have passed.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Diego Cell Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=*iego_cell,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Disk Space Remaining</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingDisk&quot;]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>B</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Remaining amount of disk in MiB available for this Diego cell to allocate to containers.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>1048576</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Memory Remaining</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingMemory&quot;]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>B</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Remaining amount of memory in MiB available for this Diego cell to allocate to containers.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>1048576</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Container Count</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.ContainerCount&quot;]</key>
+                            <delay>1m</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Cell Rep Time to Sync</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.RepBulkSyncDuration&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the Diego Cell Rep took to sync the ActualLRPs that it claimed with its actual garden containers.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Cell Health</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.UnhealthyCell&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Cell Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingDisk&quot;].min(5m)}&lt;{$DIEGO_LOW_DISK_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Has Low Disk Space!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description>1. Assign more resources to the cells or assign more cells.&#13;
+2. Scale additional cells using Ops Manager.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingDisk&quot;].min(5m)}&lt;{$DIEGO_LOW_DISK_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Has Low Disk Space!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Assign more resources to the cells or assign more cells.&#13;
+2. Scale additional cells using Ops Manager.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.UnhealthyCell&quot;].max(5m)}=1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} is Down!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Investigate Diego cell servers for faults and errors.&#13;
+2. If a particular cell or cells appear problematic, pull logs for that cell, as well as the BBS logs before contacting Pivotal Support.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingMemory&quot;].max(5m)}&lt;{$DIEGO_LOW_MEMORY_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Low On Memory!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description>1. Assign more resources to the cells or assign more cells.&#13;
+2. Scale additional Diego cells using Ops Manager.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.CapacityRemainingMemory&quot;].max(5m)}&lt;{$DIEGO_LOW_MEMORY_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Low On Memory!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Assign more resources to the cells or assign more cells.&#13;
+2. Scale additional Diego cells using Ops Manager.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.RepBulkSyncDuration&quot;].avg(15m)}&gt;{$DIEGO_SYNC_TIME_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Time to Sync too long!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description>1. Investigate BBS logs for faults and errors.&#13;
+2. If a particular cell or cells appear problematic, pull logs for the cells and the BBS logs before contacting Pivotal Support.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.rep\.RepBulkSyncDuration&quot;].avg(15m)}&gt;{$DIEGO_SYNC_TIME_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXJOB} - {#JMXIP} Time to Sync too long!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Investigate BBS logs for faults and errors.&#13;
+2. If a particular cell or cells appear problematic, pull logs for the cells and the BBS logs before contacting Pivotal Support.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Router Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=*outer,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>2</evaltype>
+                        <formula/>
+                        <conditions>
+                            <condition>
+                                <macro>{#JMXJOB}</macro>
+                                <value>isolated_router</value>
+                                <operator>8</operator>
+                                <formulaid>B</formulaid>
+                            </condition>
+                            <condition>
+                                <macro>{#JMXJOB}</macro>
+                                <value>router</value>
+                                <operator>8</operator>
+                                <formulaid>A</formulaid>
+                            </condition>
+                        </conditions>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Router Bad Gateways</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.bad_gateways&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The lifetime number of bad gateways, or 502 responses, from Gorouter itself, emitted per Gorouter instance.&#13;
+The Gorouter emits a `502 bad gateway error` when it has a route in the routing table and, in attempting to make a connection to the backend, finds that the backend does not exist.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Router Handling Latency</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.latency&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The time in milliseconds that the Gorouter takes to handle requests to its app endpoints. This is the average round trip response time to an app, which includes router handling.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Time Since Last Route Registered</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.ms_since_last_registry_update&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in milliseconds since the last route register was received, emitted per Gorouter instance.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Number of Route Registrations Received</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.registry_message\.route-emitter&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Reports the lifetime number of route registration messages received by the Gorouter. The metric is emitted for each Gorouter instance.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Router 5XX http Status Code Errors</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.responses.5xx&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The lifetime number of requests completed by the Gorouter VM for HTTP status family 5xx, server errors, emitted per Gorouter instance.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Number of Route Registrations Sent</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.route_emitter\.MessagesEmitted&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Reports the lifetime number of route registration messages sent by the Route Emitter component. The metric is emitted for each Route Emitter.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Router Throughput</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.total_requests&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The lifetime number of requests completed by the Gorouter VM, emitted per Gorouter instance</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Total Router Routes</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.total_routes&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The current total number of routes registered with the Gorouter, emitted per Gorouter instance</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Router Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.responses.5xx&quot;].avg(5m)}&gt;10</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High # of 5XX Response Codes on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Look for out-of-memory errors and other app-level errors.&#13;
+&#13;
+2. As a temporary measure, ensure that the troublesome app is scaled to more than one instance.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.bad_gateways&quot;].avg(5m)}&gt;1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Many Bad Gateway Errors on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Look in the Gorouter and route_emitter logs for connection issues to NATS.&#13;
+&#13;
+2. Check the BOSH logs to see if the NATS, Gorouter, or route_emitter VMs are failing.&#13;
+&#13;
+3. Look broadly at the health of all VMs, particularly Diego-related VMs.&#13;
+&#13;
+4. If problems persist, pull Gorouter and route_emitter logs and contact Pivotal Support to say there has been an unusual increase in Gorouter bad gateway responses.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.latency&quot;].min(10m)}&gt;0.5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Router Handling Latency too High on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Extended periods of high latency can point to several factors. The Gorouter latency measure includes network and app latency impacts as well.&#13;
+&#13;
+1. First inspect logs for network issues and indications of misbehaving apps.&#13;
+&#13;
+2.If it appears that the Gorouter needs to scale due to ongoing traffic congestion, do not scale on the latency metric alone. You should also look at the CPU utilization of the Gorouter VMs and keep it within a maximum 60-70% range.&#13;
+&#13;
+3. Resolve high utilization by scaling the Gorouter.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.total_requests&quot;].avg(5m)}&gt;300</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Router Throughput High on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>For optimizing the Gorouter, consider the requests-per-second derived metric in the context of router latency and Gorouter VM CPU utilization. From performance and load testing of the Gorouter, Pivotal has observed that at approximately 2500 requests per second, latency can begin to increase. &#13;
+&#13;
+To increase throughput and maintain low latency, scale the Gorouters either horizontally or vertically and watch that the system.cpu.user metric for the Gorouter stays in the suggested range of 60-70% CPU Utilization.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.gorouter\.ms_since_last_registry_update&quot;].max(5m)}&gt;5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Time Since Last Route Register too Long on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Search the Gorouter and route_emitter logs for connection issues to NATS.&#13;
+Check the BOSH logs to see if the NATS, Gorouter, or route_emitter VMs are failing.&#13;
+Look more broadly at the health of all VMs, particularly Diego-related VMs.&#13;
+If problems persist, pull the Gorouter and route_emitter logs and contact Pivotal Support to say there are consistently long delays in route registry.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Diego Brain Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=diego_brain,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Auctioneer Time to Fetch Cell State</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerFetchStatesDuration&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the auctioneer took to fetch state from all the Diego cells when running its auction.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Auctioneer AI Placement Failures</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerLRPAuctionsFailed&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The number of Long Running Process (LRP) instances that the auctioneer failed to place on Diego cells. This metric is cumulative over the lifetime of the auctioneer job.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Auctioneer App Instance Starts</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerLRPAuctionsStarted&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The number of LRP instances that the auctioneer successfully placed on Diego cells. This metric is cumulative over the lifetime of the auctioneer job.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Auctioneer Task Placement Failures</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerTaskAuctionsFailed&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The number of Tasks that the auctioneer failed to place on Diego cells. This metric is cumulative over the lifetime of the auctioneer job.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Nsync-bulker Time to Sync</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.nsync_bulker\.DesiredLRPSyncDuration&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the nsync-bulker took to synchronize CF apps and Diego DesiredLRPs.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Brain Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.nsync_bulker\.DesiredLRPSyncDuration&quot;].max(15m)}&gt;10</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Cloud Controller and Diego Brain Sync Time too long on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Investigate BBS metrics and logs and Cloud Controller Bridge logs for errors.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerLRPAuctionsFailed&quot;].avg(5m)}&gt;0.5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High # of App Instance Placement Failures on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. To best determine the root cause, examine the Auctioneer logs. Depending on the specific error or resource constraint, you may also find a failure reason in the Cloud Controller (CC) API.&#13;
+2. Investigate the health of your Diego cells to determine if they are the resource type causing the problem.&#13;
+3. Consider scaling additional cells using Ops Manager.&#13;
+4. If scaling cells does not solve the problem, pull Diego brain logs and BBS node logs and contact Pivotal Support telling them that LRP auctions are failing.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerLRPAuctionsStarted&quot;].avg(5m)}&gt;5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High # of Container Churn on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>When observing a significant amount of container churn, do the following:&#13;
+&#13;
+1. Look to eliminate explainable causes of temporary churn, such as a deployment or increased developer activity.&#13;
+&#13;
+2. If container churn appears to continue over an extended period, pull logs from the Diego Brain and BBS node before contacting Pivotal support.&#13;
+&#13;
+When observing extended periods of high or low activity trends, scale up or down CF components as needed.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerTaskAuctionsFailed&quot;].avg(5m)}&gt;0.5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High # of Task Placement Failures Reported by {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. To best determine the root cause, examine the Auctioneer logs. Depending on the specific error or resource constraint, you may also find a failure reason in the CC API.&#13;
+&#13;
+2. Investigate the health of Diego cells.&#13;
+&#13;
+3. Consider scaling additional cells using Ops Manager.&#13;
+&#13;
+4. If scaling cells does not solve the problem, then pull Diego brain logs and BBS logs for troubleshooting, and contact Pivotal Support telling them that Task auctions are failing.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.auctioneer\.AuctioneerFetchStatesDuration&quot;].avg(5m)}&gt;5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Time to Fetch Cell State High on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Check the health of the cells by reviewing the logs and looking for errors.&#13;
+2. Review IaaS console metrics.&#13;
+3. Pull Diego brain logs and cell logs and contact Pivotal Support telling them that fetching cell states is taking too long.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Diego Database Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=diego_database,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - BBS Time to Run LRP Convergence</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.ConvergenceLRPDuration&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the BBS took to run its LRP convergence pass.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Crashed App Instances</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.CrashedActualLRPs&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Total number of LRP instances that have crashed.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Cloud Controller and Diego in Sync</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.Domain\.cf-apps&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Indicates if the cf-apps Domain is up-to-date, meaning that CF App requests from Cloud Controller are synchronized to bbs.LRPsDesired (Diego-desired AIs) for execution.&#13;
+&#13;
+1 means cf-apps Domain is up-to-date&#13;
+&#13;
+No data received means cf-apps Domain is not up-to-date</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Num App Instances Over Expected</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsExtra&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Total number of LRP instances that are no longer desired but still have a BBS record. When Diego wants to add more apps, the BBS sends a request to the auctioneer to spin up additional LRPs. LRPsExtra is the total number of LRP instances that are no longer desired but still have a BBS record.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Num App Instances Under Expected</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsMissing&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Total number of LRP instances that are desired but have no record in the BBS. When Diego wants to add more apps, the BBS sends a request to the auctioneer to spin up additional LRPs. LRPsMissing is the total number of LRP instances that are desired but have no BBS record.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Running App Instances</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsRunning&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Rate of change in app instances being started or stopped on the platform. It is derived from bbs.LRPsRunning and represents the total number of LRP instances that are running on Diego cells.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - BBS Time to Handle Requests</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.RequestLatency&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>s</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>Time in ns that the BBS took to handle requests, aggregated across all its API endpoints.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Diego Database Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>0.000000001</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.ConvergenceLRPDuration&quot;].max(15m)}&gt;10</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>BBS Convergence Taking Too Long on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1.  Check BBS logs for errors.&#13;
+2.  Try vertically scaling the BBS VM resources up. For example, add more CPUs or memory, depending on its system.cpu and system.memory metrics.&#13;
+3.  If that does not solve the issue, pull the BBS logs and contact Pivotal Support for additional troubleshooting.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.RequestLatency&quot;].max(15m)}&gt;5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>BBS Request Handling Slow on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Check CPU and memory statistics in Ops Manager.&#13;
+&#13;
+2. Check BBS logs for faults and errors that can indicate issues with BBS.&#13;
+&#13;
+3. Try scaling the BBS VM resources up. For example, add more CPUs or memory, depending on its system.cpu and system.memory metrics.&#13;
+&#13;
+4. If the above steps do not solve the issue, then collect a sample of the cell logs from the BBS VMs and contact Pivotal Support to troubleshoot further.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.Domain\.cf-apps&quot;].last()}&lt;&gt;1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Cloud Controller and Diego not in Sync!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description>* 1 means cf-apps Domain is up-to-date&#13;
+* No data received means cf-apps Domain is not up-to-date&#13;
+&#13;
+1. Check the nysnc bulker logs and BBS logs.&#13;
+&#13;
+2. If the problem continues, pull Diego brain logs and BBS logs and contact Pivotal Support to say that the cf-apps domain is not being kept fresh.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsMissing&quot;].avg(5m)}&gt;=5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Fewer App Instances Than Expected Reported by {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Review the BBS logs for proper operation or errors, looking for detailed error messages.&#13;
+&#13;
+2. If the condition persists, pull the BBS logs and contact Pivotal Support.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.CrashedActualLRPs&quot;].avg(5m)}&gt;1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High # of Crashed App Instances reported by {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Look at the BBS logs for apps that are crashing and at the cell logs to see if the problem is with the apps themselves, rather than a platform issue.&#13;
+2. Before contacting Pivotal Support, pull the BBS logs and, if particular apps are the problem, pull the logs from their Diego cells too.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsRunning&quot;].avg(1h)} - {Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsRunning&quot;].avg(1h,1h)} &gt; 20</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Rate of Change in App Instances Running reported by {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Scale components as necessary.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.bbs\.LRPsExtra&quot;].avg(5m)}&gt;=5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>More App Instances Than Expected Reported by {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>1. Review the BBS logs for proper operation or errors, looking for detailed error messages.&#13;
+&#13;
+2. If the condition persists, pull the BBS logs and contact Pivotal Support.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>Doppler Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf,job=doppler,index=*,ip=*&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>30d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Firehose Total Dropped Messages</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.DopplerServer\.doppler\.shedEnvelopes&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The lifetime total number of messages intentionally dropped by Doppler due to back pressure.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Doppler Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXJOB} - {#JMXIP} - Firehose Throughput</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.DopplerServer\.listeners\.totalReceivedMessageCount&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description>The total number of messages received across all Doppler listeners: UDP, TCP, TLS, and GRPC.</description>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>Doppler Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>10</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.DopplerServer\.doppler\.shedEnvelopes&quot;].avg(5m)}&gt;5</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Dropped Firehose Messages on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Scale up the Firehose log receiver and Dopplers.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;opentsdb\.nozzle\.DopplerServer\.listeners\.totalReceivedMessageCount&quot;].avg(5m)}&gt;1000</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Firehose Throughput Too High on {#JMXJOB} - {#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description>Scale up the Firehose log receiver and Dopplers on consistent upward trends.&#13;
+&#13;
+Pivotal recommends that you do not scale down these components on flat or downward delta trends because unexpected spikes in throughput can cause log loss if not scaled appropriately.</description>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+                <discovery_rule>
+                    <name>CF VM Discovery</name>
+                    <type>16</type>
+                    <snmp_community/>
+                    <snmp_oid/>
+                    <key>jmx.discovery[beans,&quot;org.cloudfoundry:deployment=cf-*,job=*,index=*,ip=null&quot;]</key>
+                    <delay>5m</delay>
+                    <status>0</status>
+                    <allowed_hosts/>
+                    <snmpv3_contextname/>
+                    <snmpv3_securityname/>
+                    <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                    <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                    <snmpv3_authpassphrase/>
+                    <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                    <snmpv3_privpassphrase/>
+                    <params/>
+                    <ipmi_sensor/>
+                    <authtype>0</authtype>
+                    <username>{$PCFJMXUSER}</username>
+                    <password>{$PCFJMXPASSWORD}</password>
+                    <publickey/>
+                    <privatekey/>
+                    <port/>
+                    <filter>
+                        <evaltype>0</evaltype>
+                        <formula/>
+                        <conditions/>
+                    </filter>
+                    <lifetime>1d</lifetime>
+                    <description/>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} CPU Load (Sys)</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.cpu\.sys&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Cpu Load (User)</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.cpu\.user&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} CPU Load (Wait)</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.cpu\.wait&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Ephemeral Disk Used %</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.disk\.ephemeral\.percent&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Persistent Disk Used %</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.disk\.persistent\.percent&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} System Disk Used %</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.disk\.system\.percent&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} System Healthy</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.healthy&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>6</type>
+                                    <params/>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} System Load (1m)</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.load\.1m&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units/>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Memory Used</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.mem\.kb&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>0</value_type>
+                            <allowed_hosts/>
+                            <units>B</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>1000</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Memory Used %</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.mem\.percent&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Swap Used</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.swap\.kb&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>B</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing>
+                                <step>
+                                    <type>1</type>
+                                    <params>1000</params>
+                                </step>
+                            </preprocessing>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXINDEX} Memory Swap %</name>
+                            <type>16</type>
+                            <snmp_community/>
+                            <snmp_oid/>
+                            <key>jmx[{#JMXOBJ},&quot;system\.swap\.percent&quot;]</key>
+                            <delay>30s</delay>
+                            <history>7d</history>
+                            <trends>365d</trends>
+                            <status>0</status>
+                            <value_type>3</value_type>
+                            <allowed_hosts/>
+                            <units>%</units>
+                            <snmpv3_contextname/>
+                            <snmpv3_securityname/>
+                            <snmpv3_securitylevel>0</snmpv3_securitylevel>
+                            <snmpv3_authprotocol>0</snmpv3_authprotocol>
+                            <snmpv3_authpassphrase/>
+                            <snmpv3_privprotocol>0</snmpv3_privprotocol>
+                            <snmpv3_privpassphrase/>
+                            <params/>
+                            <ipmi_sensor/>
+                            <authtype>0</authtype>
+                            <username>{$PCFJMXUSER}</username>
+                            <password>{$PCFJMXPASSWORD}</password>
+                            <publickey/>
+                            <privatekey/>
+                            <port/>
+                            <description/>
+                            <inventory_link>0</inventory_link>
+                            <applications>
+                                <application>
+                                    <name>VM Metrics</name>
+                                </application>
+                            </applications>
+                            <valuemap/>
+                            <logtimefmt/>
+                            <preprocessing/>
+                            <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                            <application_prototypes/>
+                            <master_item_prototype/>
+                        </item_prototype>
+                    </item_prototypes>
+                    <trigger_prototypes>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.sys&quot;].min(#5)}&gt;{$HIGH_CPU_SYS_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (Sys) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.sys&quot;].min(#5)}&gt;{$HIGH_CPU_SYS_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (Sys) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.user&quot;].min(#5)}&gt;{$HIGH_CPU_USER_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (User) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.user&quot;].min(#5)}&gt;{$HIGH_CPU_USER_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (User) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.wait&quot;].min(#10)}&gt;{$HIGH_CPU_WAIT_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (Wait) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.cpu\.wait&quot;].min(#10)}&gt;{$HIGH_CPU_WAIT_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High CPU (Wait) Load on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.ephemeral\.percent&quot;].min(#5)}&gt;{$HIGH_EPHEMERAL_DISK_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Ephemeral Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.ephemeral\.percent&quot;].min(#5)}&gt;{$HIGH_EPHEMERAL_DISK_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Ephemeral Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.swap\.percent&quot;].last()}&gt;{$HIGH_SWAP_USAGE_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Memory Swap Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.swap\.percent&quot;].last()}&gt;{$HIGH_SWAP_USAGE_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Memory Swap Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.mem\.percent&quot;].last()}&gt;{$HIGH_MEMORY_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Memory Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.persistent\.percent&quot;].min(#5)}&gt;{$HIGH_PERSISTENT_DISK_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Persistent Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.persistent\.percent&quot;].min(#5)}&gt;{$HIGH_PERSISTENT_DISK_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High Persistent Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.system\.percent&quot;].min(#5)}&gt;{$HIGH_SYSTEM_DISK_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High System Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.disk\.system\.percent&quot;].min(#5)}&gt;{$HIGH_SYSTEM_DISK_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High System Disk Usage % on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.load\.1m&quot;].min(#10)}&gt;{$HIGH_CPU_LOAD_AVG_SEV0:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High System Load (1m average) on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>5</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.load\.1m&quot;].min(#10)}&gt;{$HIGH_CPU_LOAD_AVG_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>High System Load (1m average) on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.swap\.percent&quot;].delta(#120)}&gt;{$HIGH_SWAPPING_SEV1:&quot;{#JMXJOB}&quot;}</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>Lots of Swapping on {#JMXJOB}-{#JMXIP}!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.healthy&quot;].last()}=0</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXIP} is down!!!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>4</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                        <trigger_prototype>
+                            <expression>{Template Pivotal Cloud Foundry:jmx[{#JMXOBJ},&quot;system\.healthy&quot;].nodata(5m)}=1</expression>
+                            <recovery_mode>0</recovery_mode>
+                            <recovery_expression/>
+                            <name>{#JMXDEPLOYMENT}-{#JMXJOB}-{#JMXIP} is down!!!</name>
+                            <correlation_mode>0</correlation_mode>
+                            <correlation_tag/>
+                            <url/>
+                            <status>0</status>
+                            <priority>1</priority>
+                            <description/>
+                            <type>0</type>
+                            <manual_close>0</manual_close>
+                            <dependencies/>
+                            <tags/>
+                        </trigger_prototype>
+                    </trigger_prototypes>
+                    <graph_prototypes/>
+                    <host_prototypes/>
+                    <jmx_endpoint>service:jmx:rmi:///jndi/rmi://{HOST.CONN}:{HOST.PORT}/jmxrmi</jmx_endpoint>
+                </discovery_rule>
+            </discovery_rules>
+            <httptests>
+                <httptest>
+                    <name>Apps Manager Status</name>
+                    <application>
+                        <name>HTTP</name>
+                    </application>
+                    <delay>1m</delay>
+                    <attempts>1</attempts>
+                    <agent>Zabbix</agent>
+                    <http_proxy/>
+                    <variables/>
+                    <headers/>
+                    <status>0</status>
+                    <authentication>0</authentication>
+                    <http_user/>
+                    <http_password/>
+                    <verify_peer>0</verify_peer>
+                    <verify_host>0</verify_host>
+                    <ssl_cert_file/>
+                    <ssl_key_file/>
+                    <ssl_key_password/>
+                    <steps>
+                        <step>
+                            <name>Apps Manager Status</name>
+                            <url>https://apps.{$APPDOMAIN}</url>
+                            <query_fields/>
+                            <posts/>
+                            <variables/>
+                            <headers/>
+                            <follow_redirects>1</follow_redirects>
+                            <retrieve_mode>1</retrieve_mode>
+                            <timeout>15s</timeout>
+                            <required/>
+                            <status_codes>200</status_codes>
+                        </step>
+                    </steps>
+                </httptest>
+            </httptests>
+            <macros>
+                <macro>
+                    <macro>{$DIEGO_LOW_DISK_SEV0}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$DIEGO_LOW_DISK_SEV1}</macro>
+                    <value>8</value>
+                </macro>
+                <macro>
+                    <macro>{$DIEGO_LOW_MEMORY_SEV0}</macro>
+                    <value>4</value>
+                </macro>
+                <macro>
+                    <macro>{$DIEGO_LOW_MEMORY_SEV1}</macro>
+                    <value>8</value>
+                </macro>
+                <macro>
+                    <macro>{$DIEGO_SYNC_TIME_SEV0}</macro>
+                    <value>25</value>
+                </macro>
+                <macro>
+                    <macro>{$DIEGO_SYNC_TIME_SEV1}</macro>
+                    <value>15</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:cloud_controller}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:diego_cell}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:etcd_tls_server}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:isolated_diego_cell}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:isolated_router}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:mysql}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:nfs_server}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:router}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV0:uaa}</macro>
+                    <value>3</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1}</macro>
+                    <value>1</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:cloud_controller}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:diego_cell}</macro>
+                    <value>4</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:etcd_tls_server}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:isolated_diego_cell}</macro>
+                    <value>4</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:isolated_router}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:mysql}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:nfs_server}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:router}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_LOAD_AVG_SEV1:uaa}</macro>
+                    <value>2</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_SYS_SEV0}</macro>
+                    <value>35</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_SYS_SEV1}</macro>
+                    <value>25</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_USER_SEV0}</macro>
+                    <value>85</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_USER_SEV1}</macro>
+                    <value>75</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_WAIT_SEV0}</macro>
+                    <value>10</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_CPU_WAIT_SEV1}</macro>
+                    <value>5</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_EPHEMERAL_DISK_SEV0}</macro>
+                    <value>90</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_EPHEMERAL_DISK_SEV1}</macro>
+                    <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_MEMORY_SEV0}</macro>
+                    <value>95</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_MEMORY_SEV1}</macro>
+                    <value>85</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_PERSISTENT_DISK_SEV0}</macro>
+                    <value>90</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_PERSISTENT_DISK_SEV1}</macro>
+                    <value>80</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SWAPPING_SEV0}</macro>
+                    <value>15</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SWAPPING_SEV1}</macro>
+                    <value>10</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SWAP_USAGE_SEV0}</macro>
+                    <value>25</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SWAP_USAGE_SEV1}</macro>
+                    <value>15</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SYSTEM_DISK_SEV0}</macro>
+                    <value>90</value>
+                </macro>
+                <macro>
+                    <macro>{$HIGH_SYSTEM_DISK_SEV1}</macro>
+                    <value>80</value>
+                </macro>
+            </macros>
+            <templates/>
+            <screens/>
+        </template>
+    </templates>
+</zabbix_export>
